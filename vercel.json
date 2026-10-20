@@ -1,0 +1,179 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "regions": [
+    "bom1"
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/api/page?type=home"
+    },
+    {
+      "source": "/shop",
+      "destination": "/api/page?type=shop"
+    },
+    {
+      "source": "/category/:slug",
+      "destination": "/api/page?type=category&slug=:slug"
+    },
+    {
+      "source": "/product/:slug",
+      "destination": "/api/page?type=product&slug=:slug"
+    },
+    {
+      "source": "/api/auth/:action",
+      "destination": "/api/auth?action=:action"
+    },
+    {
+      "source": "/api/admin/products",
+      "destination": "/api/admin?action=products"
+    },
+    {
+      "source": "/api/admin/orders",
+      "destination": "/api/admin?action=orders"
+    },
+    {
+      "source": "/api/admin/reviews",
+      "destination": "/api/admin?action=reviews"
+    },
+    {
+      "source": "/api/admin/upload-image",
+      "destination": "/api/upload-image"
+    },
+    {
+      "source": "/api/orders/my",
+      "destination": "/api/orders?action=my"
+    },
+    {
+      "source": "/api/pay",
+      "destination": "/api/orders?action=pay"
+    },
+    {
+      "source": "/api/verify-payment",
+      "destination": "/api/orders?action=verify"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/site?action=sitemap"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/api/site?action=robots"
+    },
+    {
+      "source": "/api/auth/:action",
+      "destination": "/api/auth?action=:action"
+    },
+    {
+      "source": "/api/admin/products",
+      "destination": "/api/admin?action=products"
+    },
+    {
+      "source": "/api/admin/orders",
+      "destination": "/api/admin?action=orders"
+    },
+    {
+      "source": "/api/admin/upload-image",
+      "destination": "/api/upload-image"
+    },
+    {
+      "source": "/api/orders/my",
+      "destination": "/api/orders?action=my"
+    },
+    {
+      "source": "/api/pay",
+      "destination": "/api/orders?action=pay"
+    },
+    {
+      "source": "/api/verify-payment",
+      "destination": "/api/orders?action=verify"
+    },
+    {
+      "source": "/api/admin/settings",
+      "destination": "/api/admin?action=settings"
+    },
+    {
+      "source": "/api/site-settings",
+      "destination": "/api/site?action=settings"
+    },
+    {
+      "source": "/api/chat",
+      "destination": "/api/site?action=chat"
+    },
+    {
+      "source": "/api/admin/categories",
+      "destination": "/api/admin?action=categories"
+    },
+    {
+      "source": "/api/admin/returns",
+      "destination": "/api/admin?action=returns"
+    },
+    {
+      "source": "/api/admin/emails",
+      "destination": "/api/admin?action=emails"
+    },
+    {
+      "source": "/api/upload-return-photo",
+      "destination": "/api/upload-image?kind=return"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/expire-orders",
+      "schedule": "30 21 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(self \"https://checkout.razorpay.com\" \"https://api.razorpay.com\")"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' https://checkout.razorpay.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.supabase.co https://*.razorpay.com; font-src 'self' data:; connect-src 'self' https://*.razorpay.com https://lumberjack.razorpay.com; frame-src https://api.razorpay.com https://checkout.razorpay.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'"
+        }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/style.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    }
+  ]
+}
